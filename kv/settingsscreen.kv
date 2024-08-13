@@ -25,7 +25,7 @@
         Label:
             id: friend_id_label
             font_size: 40
-            text: "My Friend ID: "
+            text: "Meu ID de amigo: "
             size_hint: 1, .1
             pos_hint: {"top": 1, "left": 1}
         ClickableGrid:
@@ -36,7 +36,7 @@
             Image:
                 source: "icons/avatars/man.png"
             Label:
-                text: "[u]Change Avatar[/u]"
+                text: "[u]Trocar Avatar[/u]"
                 markup: True
         ClickableGrid:
             size_hint: .8, .1
@@ -46,7 +46,7 @@
             Image:
                 source: "icons/007-add-friend.png"
             Label:
-                text: "[u]Add A Friend[/u]"
+                text: "[u]Adicionar Amigo[/u]"
                 markup: True
         ClickableGrid:
             size_hint: .8, .1
@@ -56,12 +56,12 @@
             Image:
                 source: "icons/sign_out.png"
             Label:
-                text: "[u]Sign Out[/u]"
+                text: "[u]Sair[/u]"
                 markup: True
 
 
         LabelButton:
-            text: "[u]Back[/u]"
+            text: "[u]Voltar[/u]"
             canvas.before:
                 Color:
                     rgb: utils.get_color_from_hex("#35477d") if self.state == 'normal' else utils.get_color_from_hex("#6C5B7B")
