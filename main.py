@@ -47,7 +47,7 @@ class SettingsScreen(Screen):
 class ChangeAvatarScreen(Screen):
     pass
 
-#GUI =   # Make sure this is after all class definitions!
+#GUI =   # Certifique-se de que isso aconteça depois de todas as definições de classe!
 class MainApp(App):
     my_friend_id = ""
     workout_image = None
@@ -56,9 +56,9 @@ class MainApp(App):
     previous_workout_image_widget = None
     friends_list = ""
     refresh_token_file = "refresh_token.txt"
-    nicknames = DictProperty()  # Dictionary of nicknames for each friend id in friends list
-    their_friend_id = ""  # Make it so we know which friend's workout screen has been loaded for app.set_friend_nickname
-    my_firebase = None  # Reference to class in myfirebase.py
+    nicknames = DictProperty()  # Dicionário de apelidos para cada ID de amigo na lista de amigos
+    their_friend_id = ""  # Faça com que saibamos qual tela de treino de amigo foi carregada para app.set_friend_nickname
+    my_firebase = None  # Referência à classe em myfirebase.py
 
     def build(self):
         print("BEFORE")
@@ -70,7 +70,7 @@ class MainApp(App):
         return Builder.load_file("main.kv")#GUI
 
     def set_friend_nickname(self, nickname, *args):
-        # Make sure they entered something
+        # Certifique-se de que eles inseriram algo
         if nickname == "":
             return
         # Set the nickname
@@ -84,12 +84,12 @@ class MainApp(App):
         workout_request = requests.patch("https://friendly-fitness.firebaseio.com/%s/nicknames.json?auth=%s"
                                         %(self.local_id, self.id_token), data=json.dumps(self.nicknames))
         print(workout_request.content)
-        # Update the nickname in the friend_workout_screen
+        # Atualize o apelido em friend_workout_screen
         their_friend_id_label = self.root.ids.friend_workout_screen.ids.friend_workout_screen_friend_id
         their_friend_id_label.text = "[u]" + nickname + "[/u]"
 
-        # Update the nickname in the friend workout banner
-        # Go through each widget in the friends list grid
+        # Atualize o apelido no banner de treino do amigo
+        # Percorra cada widget na grade da lista de amigos
         for w in self.root.ids['friends_list_screen'].ids['friends_list_grid'].walk():
             if w.__class__ == FriendBanner:
                 if w.friend_id == self.their_friend_id:
@@ -100,7 +100,7 @@ class MainApp(App):
         self.previous_workout_image_widget = self.workout_image_widget
         self.workout_image = filename
         self.workout_image_widget = widget_id
-        # Clear the indication that the previous image was selected
+        # Limpa a indicação de que a imagem anterior foi selecionada
         if self.previous_workout_image_widget:
             self.previous_workout_image_widget.canvas.before.clear()
         # Make sure the text color of the label above the scrollview is white (incase it was red from them earlier)
